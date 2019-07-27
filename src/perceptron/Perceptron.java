@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Perceptron {
 
-    double[] weights;                            // Array que guarda os pesos sinápticos
-    double limits;
+    private double[] weights;                            // Array que guarda os pesos sinápticos
+    private double limits;
 
     /* Método para treinar a matriz 0.2, 0.1, 200*/
     public void Training( double[][] inputs,    // Entrada uma matriz, exemplo as duas primeiras colunas da tabela verdade de um operador comum
@@ -36,17 +36,19 @@ public class Perceptron {
                 int localError = outputs[j] - output;
                 error += localError;
 
+                System.out.println("Erro aqui: " + error);
                 for (int k=0 ; k<sizeLine ; k++){
                     weights[k] += (leftRate * inputs[j][k] * localError);
                 }
             }
 
+            System.out.println("Erro: " + error);
             if(error == 0) break;
         }
     }
 
     /* Função somatório */
-    private int Output(double[] input) {
+    public int Output(double[] input) {
         double sum = 0.0;
         for (int i=0; i<input.length; i++){
             sum += weights[i]*input[i];
