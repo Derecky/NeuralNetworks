@@ -1,5 +1,7 @@
 package perceptron;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Random;
 
 public class Perceptron {
@@ -14,8 +16,11 @@ public class Perceptron {
                           double leftRate,
                           int period){
 
+//        System.out.println("Iniciando Treinamento...");
+
         this.limits = limits;
         int sizeLine = inputs[0].length;
+//        System.out.println("tamanho: " + inputs[0].length);
         int outputSize = outputs.length;
         weights = new double[sizeLine];
         Random rand = new Random();
@@ -36,21 +41,24 @@ public class Perceptron {
                 int localError = outputs[j] - output;
                 error += localError;
 
-                System.out.println("Erro aqui: " + error);
+//                System.out.println("Erro aqui: " + error);
                 for (int k=0 ; k<sizeLine ; k++){
                     weights[k] += (leftRate * inputs[j][k] * localError);
                 }
             }
 
-            System.out.println("Erro: " + error);
+//            System.out.println("Erro: " + error);
             if(error == 0) break;
         }
+
+//        System.out.println("Rede Neuronal Treinada!");
     }
 
     /* Função somatório */
     public int Output(double[] input) {
         double sum = 0.0;
         for (int i=0; i<input.length; i++){
+//            System.out.println(input.length);
             sum += weights[i]*input[i];
         }
 
